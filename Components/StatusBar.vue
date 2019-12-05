@@ -22,6 +22,6 @@
 <style>
   .statusBar{
     /*background-color: white;/*By default*/
-    height:20px;
+    flex-basis:20px;
   }
 </style>

@@ -1,21 +1,22 @@
 <template>
   <view class="container">
     <StatusBar v-bind:color="statusBarColor"/>
-    <NavBar v-bind:current-page="currentPage" v-on:toggle="toggleSideBar"/>
-    <SideBar v-if="displaySideBar" v-on:close="closeSideBar"
-             v-bind:current="currentPage.Id" v-bind:pages="pages" v-on:go-to-page="goToPage"/>    
+    <NavBar v-bind:current-page="currentPage" v-bind:pages="pages" v-on:go-to-page="goToPage"/>  
     
-    <view v-if="currentPage.Id == 0">
-      <HomePage/>
-    </view>
-    
-    <view v-if="currentPage.Id == 1">
-      <BetPage/>
-    </view>
+    <view class="page">
+      <view v-if="currentPage.Id == 0">
+        <HomePage/>
+      </view>
+      
+      <view v-if="currentPage.Id == 1">
+        <BetPage/>
+      </view>
 
-    <view v-if="currentPage.Id == 2">
-      <TransferPage/>
+      <view v-if="currentPage.Id == 2">
+        <TransferPage/>
+      </view>
     </view>
+    <view class="footer"></view>
   </view>
 </template>
 
@@ -28,7 +29,6 @@
 
     import StatusBar from "./Components/StatusBar.vue";
     import NavBar from "./Components/NavBar.vue";
-    import SideBar from "./Components/SideBar.vue";
 
     import HomePage from "./Components/HomePage.vue";
     import BetPage from "./Components/BetPage.vue";
@@ -38,7 +38,6 @@
       components:{
         StatusBar,
         NavBar,
-        SideBar,
         HomePage,
         BetPage,
         TransferPage,
@@ -54,15 +53,15 @@
             pages:[
               {
                   Id: 0,
-                  Name: "Home"
+                  Name: "Dashboard"
               },
               {
                   Id: 1,
-                  Name: "Add a bet"
+                  Name: "Paris"
               },
               {
                   Id: 2,
-                  Name: "Add a transfert"
+                  Name: "Transferts"
               }
             ],
             displaySideBar: false
@@ -71,12 +70,6 @@
       methods:{
         goToPage: function(index){
           this.currentPage = this.pages[index];
-        },
-        toggleSideBar: function() {
-          this.displaySideBar = !this.displaySideBar;
-        },
-        closeSideBar: function(){
-          this.displaySideBar = false;
         }
       }
     }
@@ -84,8 +77,23 @@
 
 
 <style>
-.container {
-  /*background-color: white;*/
-  flex: 1;
-}
+  .container {
+    /*background-color: white;*/
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page{
+    flex-basis: auto;
+    padding:10px 15px;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .footer{
+    flex-basis: 20px;
+    width:100%;
+    background-color: #3399ff;
+  }
 </style>
