@@ -5,7 +5,7 @@
             <ionicons v-else name="ios-close-circle" class="add-bet" color="red"></ionicons>
         </touchable-opacity>
         
-        <BetForm v-if="displayAddForm" v-bind:new-bet="newBet"/>
+        <BetForm v-if="displayAddForm" v-on:save="addNewBet" v-bind:i="bets.length"/>
 
         <scroll-view id="betList">
             <Bet v-for="(bet, index) in bets" v-bind:key="index" v-bind:bet="bet"/>
@@ -39,10 +39,7 @@ export default {
                     Title: "Bet 2",
                     Status: "Failed"
                 }
-            ],
-            newBet: {
-
-            }
+            ]
         }
     },
     methods:{
@@ -50,8 +47,12 @@ export default {
             this.displayAddForm = !this.displayAddForm;
         },
         closeForm: function(){
-            this.displaySideBar = false;
+            this.displayAddForm = false;
         },
+        addNewBet: function(newBet){
+            this.closeForm();
+            this.bets.push(newBet);
+        },        
     }
 }
 </script>

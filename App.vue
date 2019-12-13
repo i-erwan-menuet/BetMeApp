@@ -24,10 +24,6 @@
     //import { Ionicons } from "react-native-elements"
     import { Ionicons } from "@expo/vector-icons";
     import Vue from "vue-native-core";
-    import vSelect from 'vue-select'
-
-    Vue.component('v-select', vSelect)
-    import 'vue-select/dist/vue-select.css';
 
     Vue.component("ionicons", Ionicons);
 
